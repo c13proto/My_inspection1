@@ -204,7 +204,7 @@ namespace 自作傷検出1
 
 
                 pictureBoxIpl1.ImageIpl = 検査結果画像_color;
-                //foreach (KeyValuePair<int, CvBlob> item in blobs)Console.WriteLine("{0}:({1},{2})\n", item.Key, (int)item.Value.Centroid.X, (int)item.Value.Centroid.Y);
+                //foreach (KeyValuePair<int, CvBlob> item in blobs) System.Diagnostics.Debug.WriteLine("{0}:({1},{2})\n", item.Key, (int)item.Value.Centroid.X, (int)item.Value.Centroid.Y);
 
                 storage.Dispose();
                 font.Dispose();
@@ -237,7 +237,7 @@ namespace 自作傷検出1
                     while (!sr.EndOfStream)
                         csvRecords.Add(sr.ReadLine());
                 }
-                System.Console.WriteLine("csv読み込み開始");
+                System.Diagnostics.Debug.WriteLine("csv読み込み開始");
                 正解座標 = new int[csvRecords.Count, 2];
                 //正解座標リスト = new List<int[]>();
                 for (int i = 0; i < csvRecords.Count; i++)
@@ -248,12 +248,12 @@ namespace 自作傷検出1
                     //int[] xy = { int.Parse(values[0]), int.Parse(values[1]) };
                     //正解座標リスト.Add(xy);
                 }
-                for (int i = 0; i < 正解座標.Length / 2; i++) System.Console.WriteLine("{0}\t{1}", 正解座標[i, 0], 正解座標[i, 1]);
+                for (int i = 0; i < 正解座標.Length / 2; i++) System.Diagnostics.Debug.WriteLine("{0}\t{1}", 正解座標[i, 0], 正解座標[i, 1]);
             }
             catch (System.Exception e)
             {
                 // ファイルを開くのに失敗したとき
-                System.Console.WriteLine(e.Message);
+               System.Diagnostics.Debug.WriteLine(e.Message);
             }
 
         }
@@ -283,7 +283,7 @@ namespace 自作傷検出1
             }
             for (int i = 0; i < 正解座標2.Length / 2; i++)
             {//検出されなかった座標が残る
-                Console.WriteLine(正解座標2[i, 0] + "," + 正解座標2[i, 1]);
+                 System.Diagnostics.Debug.WriteLine(正解座標2[i, 0] + "," + 正解座標2[i, 1]);
             }
 
             不正回数 = blobs.Count - 正解数;
